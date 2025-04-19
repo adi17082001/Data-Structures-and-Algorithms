@@ -7,24 +7,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int allsum(int n){
+int singleDigSum(int n){
     int sum = 0;
-    while(n>0){
-        int ld = n%10;
+    while(n > 0 || sum >= 10){
+        if(n == 0){
+            n = sum;
+            sum = 0;
+        }
+        int ld = n % 10;
         sum += ld;
-        n/=10;
+        n = n/ 10;
     }
     return sum;
-}
-
-int singleDigSum(int n){
-    int slow = allsum(n);
-    int fast = allsum(allsum(n));
-    while(slow!=fast){
-        slow = allsum(slow);
-        fast = allsum(allsum(fast));
-    }
-    return slow;
 }
 
 int main(){
