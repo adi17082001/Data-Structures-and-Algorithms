@@ -1,38 +1,28 @@
-// Print all the subsequences whose sum is given (k)
-
 #include<bits/stdc++.h>
 using namespace std;
 
-void printS(int ind,vector<int>&ds,int s, int sum, int arr[], int n){
-	if(ind==n){
-		if(s==sum){
-			for(auto it:ds){
-				cout<<it<<" ";
+
+void printSubsequencesWhoseSumIsK(int i, vector<int>&nums, int sum, vector<int>&ds, int k){
+	if(i == nums.size()){
+		if(sum == k){
+			for(auto i: ds){
+				cout << i << " ";
 			}
-			cout<<endl;
+			cout << endl;
 		}
 		return;
 	}
+	ds.push_back(nums[i]);
+	sum += nums[i];
+	printSubsequencesWhoseSumIsK(i+1, nums, sum, ds, k);
 
-	ds.push_back(arr[ind]);
-	s+=arr[ind];
-
-	printS(ind+1,ds,s,sum,arr,n);
-
-	s-=arr[ind];
 	ds.pop_back();
-
-	// not take
-	printS(ind+1,ds,s,sum,arr,n);
+	sum -= nums[i];
+	printSubsequencesWhoseSumIsK(i+1, nums, sum, ds, k);
 }
 
-
-
-
 int main(){
-	int arr[] = {1,2,1};
-	int n = 3;
-	int sum = 2;
+	vector<int>nums = {1,2,1,1,1,3};
 	vector<int>ds;
-	printS(0,ds,0,sum,arr,n);
+	printSubsequencesWhoseSumIsK(0, nums, 0, ds, 4);
 }
