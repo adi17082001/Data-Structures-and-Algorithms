@@ -3,12 +3,13 @@ using namespace std;
 
 string postfixToInfix(string s) {
     int n = s.size();
+    int i = 0;
     stack<string> st;
 
-    for (int i = 0; i < n; i++) {
+    while (i < n) {
         // if operand (letter or digit)
-        if ((s[i] >= 'a' && s[i] <= 'z') || 
-            (s[i] >= 'A' && s[i] <= 'Z') || 
+        if ((s[i] >= 'a' && s[i] <= 'z') ||
+            (s[i] >= 'A' && s[i] <= 'Z') ||
             (s[i] >= '0' && s[i] <= '9')) {
             
             st.push(string(1, s[i]));  // convert char to string
@@ -21,6 +22,7 @@ string postfixToInfix(string s) {
             string temp = "(" + t2 + string(1, s[i]) + t1 + ")";
             st.push(temp);
         }
+        i++;
     }
 
     return st.top();
