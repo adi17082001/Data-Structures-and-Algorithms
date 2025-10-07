@@ -1,5 +1,17 @@
 class Solution {
 public:
+/*
+However, std::sort expects a static function pointer or a callable object, not a non-static method (which has an implicit this pointer).
+
+So this line:
+sort(intervals.begin(), intervals.end(), comp);
+
+will cause a compile-time error.
+
+✅ Fix 1 — Make comparator static
+
+You can make the comparator static inside the class:
+*/
     static bool comp(vector<int>&val1, vector<int>&val2){
         return val1[1] < val2[1];
     }
