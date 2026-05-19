@@ -17,3 +17,17 @@ int main(){
 	cin>>n;
 	cout<<countOfDigits(n)<<endl;
 }
+
+// including negatives as well:
+public int countDigit(int n) {
+        int ct = 0;
+        if(n == 0) return 1;
+        if(n < 0){
+            n = 0 - n;
+        }
+        while(n > 0){
+            ct++;
+            n /= 10;
+        }
+        return ct;
+    }
