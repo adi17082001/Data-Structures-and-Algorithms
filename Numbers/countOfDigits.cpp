@@ -18,11 +18,11 @@ int main(){
 	cout<<countOfDigits(n)<<endl;
 }
 
-// java code
+// java code -> the condition in while should be n != 0 (in case of negatives, n > 0) fails
 public int countDigit(int n) {
         int ct = 0;
         if(n == 0) return 1;
-        while(n > 0){
+        while(n != 0){
             ct++;
             n /= 10;
         }
